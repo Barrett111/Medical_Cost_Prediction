@@ -8,6 +8,7 @@ from pathlib import Path
 import warnings
 import time
 import traceback
+import os
 
 # Initialize at module level (loads only once)
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -121,5 +122,11 @@ def predict():
     result = predict_medical_cost(procedure_name, hospital_type, city_tier, metro)
     return jsonify(result)
 
+#if __name__ == '__main__':
+   #app.run(debug=True)
+
+   
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
+    app.run(debug=False, host='0.0.0.0', port=port)
